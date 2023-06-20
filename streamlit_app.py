@@ -28,22 +28,24 @@ common_genes=list(set(adata.var_names) & set(adata_Loo.var_names))
 del(adata_Loo)
 del(adata)
 
-# Set up Streamlit app
-st.title("Embryonic and post-natal mouse astrocytes and radial glia")
-st.markdown("Data from [Loo et al.](https://www.nature.com/articles/s41467-018-08079-9)")
-
 # Sidebar with dropdown menu
 st.sidebar.title("Gene selection")
 color_col = st.sidebar.selectbox("Select a variable to plot", ['Condition']+common_genes)
 
+# Set up Streamlit app
+st.title("Embryonic and post-natal mouse astrocytes and radial glia")
+
+# First show data from Loo et al.
+st.markdown("Dataset 1: [Loo et al.](https://www.nature.com/articles/s41467-018-08079-9)")
 scatter_Loo= px.scatter(df_Loo,x='UMAP1',y='UMAP2',color=color_col)
 strip_Loo = px.strip(df_Loo, x='Condition', y=color_col)
 st.plotly_chart(scatter_Loo)
 st.plotly_chart(strip_Loo)
 
+# Then show the Bella et al. dataset
+st.markdown("Dataset 2: [Bella et al.](https://www.nature.com/articles/s41586-021-03670-5)")
 scatter_fig= px.scatter(df_Bella,x='UMAP1',y='UMAP2',color=color_col)
 strip_fig = px.strip(df_Bella, x='Condition', y=color_col)
-
 st.plotly_chart(scatter_fig)
 st.plotly_chart(strip_fig)
 #st.write(df_Bella.shape)
