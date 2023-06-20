@@ -1,6 +1,6 @@
 numpy==1.21.4
 plotly==5.9.0
-scanpy==1.9.3
+scanpy==1.9.0
 loompy==3.0.7
 numba==0.57.0 
 
